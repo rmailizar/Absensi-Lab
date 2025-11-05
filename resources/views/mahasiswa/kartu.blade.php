@@ -6,8 +6,7 @@
     <title>Kartu Anggota Lab</title>
     <style>
         @page {
-            size: 8.6cm 5.4cm;
-            /* ukuran kartu ID standar */
+            size: 10.6cm 8.4cm;
             margin: 0;
         }
 
@@ -25,7 +24,6 @@
             height: 5.4cm;
             background: linear-gradient(135deg, #004aad, #007bff);
             background-color: #004aad;
-            /* fallback solid */
             color: white;
             border-radius: 10px;
             position: relative;
@@ -34,33 +32,43 @@
             padding: 10px 15px;
         }
 
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .header img {
+        /* ✅ Logo fix di kiri atas */
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 15px;
             width: 45px;
             height: 45px;
         }
 
+        /* ✅ Judul fix di kanan atas, tidak terdorong logo */
         .title {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            text-align: right;
             font-size: 14px;
             font-weight: bold;
-            text-align: right;
+            line-height: 1.1;
+        }
+
+        .title small {
+            font-size: 11px;
+            font-weight: normal;
         }
 
         .body {
-            margin-top: 5px;
-            font-size: 11px;
+            position: absolute;
+            top: 70px;
+            left: 20px;
+            font-size: 15px;
             line-height: 1.5;
         }
 
         .nama {
-            font-size: 13px;
+            font-size: 18px;
             font-weight: bold;
-            margin-top: 3px;
+            margin-bottom: 4px;
         }
 
         .qrcode {
@@ -81,23 +89,25 @@
 
 <body>
     <div class="kartu">
-        <div class="header">
-            <img src="{{ public_path('logo_kampus.png') }}" alt="Logo Kampus">
-            <div class="title">
-                Kartu Anggota Lab<br>
-                <small>Universitas Contoh</small>
-            </div>
+        <img src="{{ public_path('images/untirta.svg') }}" alt="UNTIRTA" class="logo">
+
+        <div class="title">
+            Kartu Anggota Lab<br>
+            <small>Informatika</small>
         </div>
 
         <div class="body">
             <div class="nama">{{ strtoupper($mahasiswa->nama) }}</div>
             <div>NIM : {{ $mahasiswa->nim }}</div>
             <div>Jurusan : {{ $mahasiswa->jurusan }}</div>
-            <div>Email : {{ $mahasiswa->email }}</div>
         </div>
 
         <div class="qrcode">
-            {!! QrCode::size(60)->generate($mahasiswa->nim) !!}
+            @if ($mahasiswa->qr_code)
+                <img src="{{ public_path('storage/' . $mahasiswa->qr_code) }}" width="90" height="90" alt="QR">
+            @else
+                <small>Tidak ada QR</small>
+            @endif
         </div>
 
         <div class="footer">
