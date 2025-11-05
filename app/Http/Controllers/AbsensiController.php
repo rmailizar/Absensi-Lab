@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AbsensiExport;
 use App\Models\Absensi;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AbsensiController extends Controller
 {
@@ -16,6 +18,33 @@ class AbsensiController extends Controller
     {
         return view('absensi.index');
     }
+
+    public function rekap(Request $request)
+    {
+        $tanggalAwal = $request->input('tanggal_awal');
+        $tanggalAkhir = $request->input('tanggal_akhir');
+        $keyword = $request->input('keyword');
+
+        $query = Absensi::with('mahasiswa')->orderBy('tanggal', 'desc');
+
+        // Filter tanggal jika diisi
+        if ($tanggalAwal && $tanggalAkhir) {
+            $query->whereBetween('tanggal', [$tanggalAwal, $tanggalAkhir]);
+        }
+
+        // Filter nama atau NIM mahasiswa
+        if ($keyword) {
+            $query->whereHas('mahasiswa', function ($q) use ($keyword) {
+                $q->where('nama', 'like', "%{$keyword}%")
+                    ->orWhere('nim', 'like', "%{$keyword}%");
+            });
+        }
+
+        $data = $query->get();
+
+        return view('absensi.rekap', compact('data', 'tanggalAwal', 'tanggalAkhir', 'keyword'));
+    }
+
 
     /**
      * Simpan hasil scan QR ke database
@@ -80,5 +109,23 @@ class AbsensiController extends Controller
                 ]);
             }
         }
+    }
+
+    public function export(Request $request)
+    {
+        $tanggalAwal = $request->input('tanggal_awal');
+        $tanggalAkhir = $request->input('tanggal_akhir');
+        $keyword = $request->input('keyword');
+
+        // Jika tidak memilih tanggal → ekspor semua data
+        if (!$tanggalAwal || !$tanggalAkhir) {
+            $tanggalAwal = Absensi::min('tanggal') ?? now()->toDateString();
+            $tanggalAkhir = Absensi::max('tanggal') ?? now()->toDateString();
+        }
+
+        return Excel::download(
+            new AbsensiExport($tanggalAwal, $tanggalAkhir, $keyword),
+            "rekap_absensi_{$tanggalAwal}_sd_{$tanggalAkhir}.xlsx"
+        );
     }
 }

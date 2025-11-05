@@ -32,7 +32,7 @@ class MahasiswaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nim' => 'required|unique:mahasiswa',
+            'nim' => 'required|unique:mahasiswas',
             'nama' => 'required',
             'jurusan' => 'required',
         ]);
