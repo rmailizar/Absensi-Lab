@@ -89,8 +89,7 @@
 
 <body>
     <div class="kartu">
-        <img src="{{ public_path('images/untirta.svg') }}" alt="UNTIRTA" class="logo">
-
+      <img src="{{ asset('images/untirta.svg') }}" alt="UNTIRTA" class="logo">
         <div class="title">
             Kartu Anggota Lab<br>
             <small>Informatika</small>
@@ -104,7 +103,7 @@
 
         <div class="qrcode">
             @if ($mahasiswa->qr_code)
-                <img src="{{ public_path('storage/' . $mahasiswa->qr_code) }}" width="90" height="90" alt="QR">
+            <img src="{{ asset('storage/' . $mahasiswa->qr_code) }}" width="90" height="90" alt="QR">
             @else
                 <small>Tidak ada QR</small>
             @endif
