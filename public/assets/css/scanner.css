@@ -1,0 +1,92 @@
+body {
+  background-color: #0b0e14;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  transition: background-color 0.6s ease;
+}
+
+h2 {
+  font-weight: 800;
+  font-size: 2.2rem;
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+  margin-bottom: 8px;
+}
+
+p {
+  color: #ccc;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+}
+
+#camera-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#preview {
+  width: 450px;
+  height: 450px;
+  border-radius: 20px;
+  box-shadow: 0 0 25px 3px #00b7ff;
+  object-fit: cover;
+  transition: box-shadow 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+/* Animasi garis cahaya */
+.scanner-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #00b7ff, transparent);
+  animation: scan-move 2.5s linear infinite;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+@keyframes scan-move {
+  0% {
+    top: 0%;
+    opacity: 0.6;
+  }
+  50% {
+    top: 97%;
+    opacity: 1;
+  }
+  100% {
+    top: 0%;
+    opacity: 0.6;
+  }
+}
+
+.scan-success {
+  background-color: #0f5132 !important;
+}
+
+.scan-fail {
+  background-color: #58151c !important;
+}
+
+.overlay-text {
+  position: absolute;
+  bottom: -60px;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.overlay-text.show {
+  opacity: 1;
+}
