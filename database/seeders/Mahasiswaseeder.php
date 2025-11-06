@@ -10,7 +10,6 @@ class MahasiswaSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::table('mahasiswas')->truncate();
         Mahasiswa::create([
             'nim' => '202310003',
             'nama' => 'Budi Santoso',
