@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <X-navbar setActive = "ManagementMahasiswa"/>
+    <x-navbar setActive="ManagementMahasiswa" />
 
     <!-- Alert container -->
     <div class="alert-container"></div>
@@ -237,8 +237,7 @@
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
     <script>
         const alertContainer = document.querySelector(".alert-container");
 
