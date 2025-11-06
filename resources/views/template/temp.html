@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Nova - Bootstrap 5 Template</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- ========================= CSS here ========================= -->
+     <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/manageuser.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap-5.0.0-beta1.min.css" />
+    <link rel="stylesheet" href="assets/css/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="assets/css/tiny-slider.css" />
+    <link rel="stylesheet" href="assets/css/animate.css" />
+    <link rel="stylesheet" href="assets/css/lindy-uikit.css" />
+  </head>
+  <body>
+
+    <!-- ========================= hero-section-wrapper-5 start ========================= -->
+    <section id="home" class="hero-section-wrapper-5">
+      <!-- ========================= header-6 start ========================= -->
+      <header class="header header-6">
+        <div class="navbar-area">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg">
+                  <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent6"
+                    aria-controls="navbarSupportedContent6"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                  >
+                    <span class="toggler-icon"></span>
+                    <span class="toggler-icon"></span>
+                    <span class="toggler-icon"></span>
+                  </button>
+
+                  <div
+                    class="collapse navbar-collapse sub-menu-bar"
+                    id="navbarSupportedContent6"
+                  >
+                    <ul id="nav6" class="navbar-nav ms-auto">
+                      <li class="nav-item">
+                        <a class="page-scroll active" href="#home">Home</a>
+                      </li>
+
+                      <li class="nav-item">
+                        <a class="page-scroll" href="#feature">Scanner</a>
+                      </li>
+
+                      <li class="nav-item">
+                        <a class="page-scroll" href="#about">Report</a>
+                      </li>
+
+                      <!-- Dropdown Management -->
+                      <li class="nav-item dropdown">
+                        <a
+                          class="nav-link dropdown-toggle page-scroll"
+                          href="#"
+                          id="managementDropdown"
+                          role="button"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          Management
+                        </a>
+                        <ul
+                          class="dropdown-menu"
+                          aria-labelledby="managementDropdown"
+                        >
+                          <li>
+                            <a class="dropdown-item" href="managementUser.html"
+                              >Management Mahasiswa</a
+                            >
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="#admin"
+                              >Management Admin</a
+                            >
+                          </li>
+                        </ul>
+                      </li>
+
+                      <li class="nav-item">
+                        <a class="page-scroll" href="#contact">Login</a>
+                      </li>
+                    </ul>
+                  </div>
+                </nav>
+
+                <!-- navbar -->
+
+
+                 <body>
+
+    <!-- Alert container -->
+    <div class="alert-container"></div>
+
+    <!-- Content -->
+    <div class="container py-5">
+      <div class="card shadow-sm rounded-4">
+        <div class="card-body">
+          <div
+            class="d-flex justify-content-between align-items-center mb-4 flex-wrap"
+          >
+            <h5 class="fw-bold mb-2">Admin Table</h5>
+            <div class="d-flex align-items-center gap-2">
+              <input
+                type="text"
+                class="form-control form-control-sm search-box"
+                placeholder="Cari admin..."
+              />
+              <button
+                class="btn btn-primary btn-sm px-3"
+                data-bs-toggle="modal"
+                data-bs-target="#addAdminModal"
+              >
+                <i class="bi bi-person-plus me-1"></i> Tambah Admin
+              </button>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table align-middle table-bordered text-center">
+              <thead class="table-light">
+                <tr>
+                  <th>No</th>
+                  <th>Nama</th>
+                  <th>NIM</th>
+                  <th>Jurusan</th>
+                  <th>QR</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <i class="bi bi-person-circle avatar-icon me-2"></i>
+                      <div>
+                        <h6 class="mb-0 fw-semibold">John Michael</h6>
+                        <small class="text-muted">john@creative-tim.com</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td>123456789</td>
+                  <td>Teknik Informatika</td>
+                  <td>
+                    <img
+                      src="https://qrcg-free-editor.qr-code-generator.com/latest/assets/images/websiteQRCode_noFrame.png"
+                      width="60"
+                    />
+                  </td>
+                  <td class="action-btn">
+                    <button
+                      class="edit me-2"
+                      data-bs-toggle="modal"
+                      data-bs-target="#editAdminModal"
+                    >
+                      <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button
+                      class="delete"
+                      data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"
+                    >
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <i class="bi bi-person-circle avatar-icon me-2"></i>
+                      <div>
+                        <h6 class="mb-0 fw-semibold">Alexa Liras</h6>
+                        <small class="text-muted">alexa@creative-tim.com</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td>987654321</td>
+                  <td>Sistem Informasi</td>
+                  <td>
+                    <img
+                      src="https://qrcg-free-editor.qr-code-generator.com/latest/assets/images/websiteQRCode_noFrame.png"
+                      width="60"
+                    />
+                  </td>
+                  <td class="action-btn">
+                    <button
+                      class="edit me-2"
+                      data-bs-toggle="modal"
+                      data-bs-target="#editAdminModal"
+                    >
+                      <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button
+                      class="delete"
+                      data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"
+                    >
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination -->
+          <nav>
+            <ul class="pagination mt-4">
+              <li class="page-item disabled">
+                <a class="page-link" href="#">Previous</a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link" href="#">1</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">2</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">3</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Tambah Admin -->
+    <div
+      class="modal fade"
+      id="addAdminModal"
+      tabindex="-1"
+      aria-labelledby="addAdminModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadow-lg">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addAdminModalLabel">Tambah Admin</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body px-4 py-4">
+            <form id="addAdminForm">
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Nama</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Masukkan nama lengkap"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label fw-semibold">NIM</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Masukkan NIM"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Jurusan</label>
+                <select class="form-select" required>
+                  <option selected disabled>Pilih jurusan</option>
+                  <option>Teknik Informatika</option>
+                  <option>Sistem Informasi</option>
+                  <option>Teknik Komputer</option>
+                  <option>Manajemen Informatika</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Masukkan password"
+                  required
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">
+              Batal
+            </button>
+            <button type="button" class="btn btn-primary" id="saveAdminBtn">
+              Simpan
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Edit Admin -->
+    <div
+      class="modal fade"
+      id="editAdminModal"
+      tabindex="-1"
+      aria-labelledby="editAdminModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadow-lg">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editAdminModalLabel">Edit Admin</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body px-4 py-4">
+            <form>
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Nama</label>
+                <input type="text" class="form-control" value="John Michael" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label fw-semibold">NIM</label>
+                <input type="text" class="form-control" value="123456789" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Jurusan</label>
+                <select class="form-select">
+                  <option>Teknik Informatika</option>
+                  <option>Sistem Informasi</option>
+                  <option>Teknik Komputer</option>
+                  <option>Manajemen Informatika</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Kosongkan jika tidak diubah"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">
+              Batal
+            </button>
+            <button class="btn btn-primary">Simpan Perubahan</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Konfirmasi Hapus -->
+    <div
+      class="modal fade"
+      id="deleteConfirmModal"
+      tabindex="-1"
+      aria-labelledby="deleteConfirmModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadow-lg">
+          <div class="modal-header bg-danger text-white">
+            <h5 class="modal-title" id="deleteConfirmModalLabel">
+              Konfirmasi Hapus
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            Apakah kamu yakin ingin menghapus admin ini?
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">
+              Batal
+            </button>
+            <button class="btn btn-danger" id="confirmDeleteBtn">Hapus</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const alertContainer = document.querySelector(".alert-container");
+
+      function showAlert(message, type = "success") {
+        const alert = document.createElement("div");
+        alert.className = `alert alert-${type} alert-dismissible fade show`;
+        alert.role = "alert";
+        alert.innerHTML = `
+          ${message}
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        `;
+        alertContainer.appendChild(alert);
+        setTimeout(() => alert.remove(), 3000);
+      }
+
+      document
+        .getElementById("saveAdminBtn")
+        .addEventListener("click", function () {
+          const modal = bootstrap.Modal.getInstance(
+            document.getElementById("addAdminModal")
+          );
+          modal.hide();
+          showAlert("Admin berhasil ditambahkan!");
+        });
+
+      document
+        .getElementById("confirmDeleteBtn")
+        .addEventListener("click", function () {
+          const modal = bootstrap.Modal.getInstance(
+            document.getElementById("deleteConfirmModal")
+          );
+          modal.hide();
+          showAlert("Admin berhasil dihapus!", "danger");
+        });
+    </script>
+  </body>
+</html>
