@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/lindy-uikit.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/manageuser.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/scanner.css') }}">
+    @yield('scanner-style')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
     <style>
@@ -27,9 +27,7 @@
     </style>
 </head>
 
-<body class="bg-white">
-    <div class="bg-shape"></div>
-    <div class="bg-gradient"></div>
+<body class="">
     @yield('content')
 
     <script src="{{ asset('assets/js/bootstrap-5.0.0-beta1.min.js') }}"></script>

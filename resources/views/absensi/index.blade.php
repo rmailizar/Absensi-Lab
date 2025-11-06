@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('scanner-style')
+    <link rel="stylesheet" href="{{ asset('assets/css/scanner.css') }}">
+@endsection
+
 @section('content')
     <div class="text-center">
         <h2 class="text-white">Scan Kode QR Kamu Disini</h2>

@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="bg-shape"></div>
+    <div class="bg-gradient"></div>
     <div class="container mt-5">
         <h3 class="mb-4 text-center">📅 Rekap Absensi Mahasiswa</h3>
 

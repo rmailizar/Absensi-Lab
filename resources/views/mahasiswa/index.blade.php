@@ -3,6 +3,8 @@
 @section('content')
     <x-navbar setActive="ManagementMahasiswa" />
 
+    <div class="bg-shape"></div>
+    <div class="bg-gradient"></div>
     <!-- Alert container -->
     <div class="alert-container"></div>
 
@@ -236,54 +238,4 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> 333f7525776eb4459c1fb5be5d935b2f8e459b77
-    <script>
-        const alertContainer = document.querySelector(".alert-container");
-
-        function showAlert(message, type = "success") {
-            const alert = document.createElement("div");
-            alert.className = `alert alert-${type} alert-dismissible fade show`;
-            alert.role = "alert";
-            alert.innerHTML = `
-          ${message}
-          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        `;
-            alertContainer.appendChild(alert);
-            setTimeout(() => alert.remove(), 3000);
-        }
-
-        document
-            .getElementById("saveAdminBtn")
-            .addEventListener("click", function() {
-                const modal = bootstrap.Modal.getInstance(
-                    document.getElementById("addAdminModal")
-                );
-                modal.hide();
-                showAlert("mahasiswa berhasil ditambahkan!");
-            });
-
-        document
-            .getElementById("confirmDeleteBtn")
-            .addEventListener("click", function() {
-                const modal = bootstrap.Modal.getInstance(
-                    document.getElementById("deleteConfirmModal")
-                );
-                modal.hide();
-                showAlert("mahasiswa berhasil dihapus!", "danger");
-            });
-
-        document
-            .getElementById("saveEditBtn")
-            .addEventListener("click", function() {
-                const modal = bootstrap.Modal.getInstance(
-                    document.getElementById("editAdminModal")
-                );
-                modal.hide();
-                showAlert("Perubahan data mahasiswa berhasil disimpan!");
-            });
-    </script>
 @endsection
