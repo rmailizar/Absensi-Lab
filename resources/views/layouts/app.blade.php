@@ -21,10 +21,6 @@
             overflow-y: auto;
             /* pastikan bisa scroll */
         }
-
-        .content-wrapper {
-            margin-top: 450px !important;
-        }
     </style>
 </head>
 

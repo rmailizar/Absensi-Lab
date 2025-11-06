@@ -55,11 +55,18 @@ class MahasiswaController extends Controller
 
     public function destroy(Mahasiswa $mahasiswa)
     {
-        if ($mahasiswa->qr_code && Storage::disk('public')->exists($mahasiswa->qr_code)) {
-            Storage::disk('public')->delete($mahasiswa->qr_code);
-        }
+        try {
+            if ($mahasiswa->qr_code && Storage::disk('public')->exists($mahasiswa->qr_code)) {
+                Storage::disk('public')->delete($mahasiswa->qr_code);
+            }
 
-        $mahasiswa->delete();
-        return redirect()->route('mahasiswa.index')->with('success', 'Mahasiswa dihapus.');
+            $mahasiswa->delete();
+
+            // UBAH INI: Kirim respons JSON yang diharapkan oleh JavaScript Anda
+            return response()->json(['success' => true, 'message' => 'Mahasiswa berhasil dihapus.']);
+        } catch (\Exception $e) {
+            // Opsional: Kirim error jika gagal
+            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+        }
     }
 }
