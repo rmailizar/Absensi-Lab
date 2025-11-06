@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    <x-navbar setActive="Rekap" />
     <div class="bg-shape"></div>
     <div class="bg-gradient"></div>
     <div class="container mt-5">

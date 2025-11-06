@@ -25,13 +25,13 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto align-items-center">
               <li class="nav-item mx-2">
-                <a class="nav-link" href="{{ route('mahasiswa.index') }}">Home</a>
+                <a class="nav-link {{ $setActive == 'Home' ? 'active text-primary' : '' }}" href="{{ route('mahasiswa.index') }}">Home</a>
               </li>
               <li class="nav-item mx-2">
-                <a class="nav-link" href="{{ route('absensi.index') }}">Scanner</a>
+                <a class="nav-link {{ $setActive == 'Scanner' ? 'active text-primary' : '' }}" href="{{ route('absensi.index') }}">Scanner</a>
               </li>
               <li class="nav-item mx-2">
-                <a class="nav-link fw-semibold" href="{{ route('absensi.rekap') }}"
+                <a class="nav-link fw-semibold {{ $setActive == 'Rekap' ? 'active text-primary' : '' }}" href="{{ route('absensi.rekap') }}"
                   >Report</a
                 >
               </li>
