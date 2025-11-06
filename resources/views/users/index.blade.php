@@ -1,8 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-5">
-        <h3 class="mb-4 text-center">👥 Manajemen User</h3>
+    <x-navbar setActive="ManagementUser" />
+
+    <!-- Alert container -->
+    <div class="alert-container"></div>
+
+    <div class="container">
 
         @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
@@ -10,12 +14,19 @@
             <div class="alert alert-danger">{{ session('error') }}</div>
         @endif
 
-        <div class="text-end mb-3">
-            <a href="{{ route('users.create') }}" class="btn btn-primary">➕ Tambah User</a>
-        </div>
-
-        <div class="card shadow-sm">
+        <div class="card shadow-lg">
             <div class="card-body">
+                {{-- <div class="text-end mb-3">
+                    
+                </div> --}}
+                <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+                    <h5 class="fw-bold mb-0" style="color: #0d6efd">
+                        Managemen User
+                    </h5>
+                    <div class="d-flex align-items-center gap-2 flex-nowrap">
+                        <a href="{{ route('users.create') }}" class="btn btn-primary">➕ Tambah User</a>
+                    </div>
+                </div>
                 <table class="table table-bordered text-center align-middle">
                     <thead class="table-dark">
                         <tr>

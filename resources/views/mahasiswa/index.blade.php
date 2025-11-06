@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    <X-navbar setActive = "ManagementMahasiswa"/>
+    <x-navbar setActive="ManagementMahasiswa" />
 
     <!-- Alert container -->
     <div class="alert-container"></div>
 
     <!-- Content -->
-    <div class="container py-5 mt-5">
+    <div class="container content-wrapper">
         <div class="card shadow-sm rounded-4">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
@@ -43,7 +43,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>NIM</th>
-                                <th>Nama</th>                          
+                                <th>Nama</th>
                                 <th>Jurusan</th>
                                 <th>QR</th>
                                 <th>Aksi</th>
@@ -165,8 +165,7 @@
     </div>
 
     <!-- Modal Edit Mahasiswa -->
-    <div class="modal fade" id="editAdminModal" tabindex="-1" aria-labelledby="editAdminModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="editAdminModal" tabindex="-1" aria-labelledby="editAdminModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content shadow-lg">
                 <div class="modal-header">
@@ -238,7 +237,6 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         const alertContainer = document.querySelector(".alert-container");
 

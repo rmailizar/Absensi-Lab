@@ -5,7 +5,7 @@
         <h3 class="mb-4 text-center">📅 Rekap Absensi Mahasiswa</h3>
 
         <!-- Filter Rentang Tanggal & Pencarian -->
-        <div class="card mb-4 shadow-sm">
+        <div class="card mb-4 shadow-lg">
             <div class="card-body">
                 <form action="{{ route('absensi.rekap') }}" method="GET" class="row g-3 align-items-center">
 
@@ -42,7 +42,7 @@
 
         <!-- Tabel Rekap -->
         @if (count($data) > 0)
-            <div class="card shadow-sm">
+            <div class="card shadow-lg">
                 <div class="card-body">
                     <h5 class="mb-3">
                         @if ($tanggalAwal && $tanggalAkhir)

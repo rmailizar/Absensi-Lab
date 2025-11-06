@@ -4,9 +4,9 @@
 
 @props(['setActive'])
 
-<header class="header shadow-sm">
+<header class="header shadow-sm my-5">
       <nav
-        class="navbar navbar-expand-lg navbar-light bg-white bg-opacity-75 backdrop-blur py-3 fixed-top"
+        class="navbar navbar-expand-lg navbar-light bg-white bg-opacity-75 fixed-top shadow-sm"
       >
         <div class="container">
           <a class="navbar-brand fw-bold text-primary fs-4" href="#">Nova</a>
