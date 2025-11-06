@@ -1,93 +1,75 @@
+@php
+  use Illuminate\Support\Str;
+@endphp
+
 @props(['setActive'])
 
-<nav class="navbar navbar-expand-lg">
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-bs-toggle="collapse"
-    data-bs-target="#navbarSupportedContent6"
-    aria-controls="navbarSupportedContent6"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="toggler-icon"></span>
-    <span class="toggler-icon"></span>
-    <span class="toggler-icon"></span>
-  </button>
+<header class="header shadow-sm">
+      <nav
+        class="navbar navbar-expand-lg navbar-light bg-white bg-opacity-75 backdrop-blur py-3 fixed-top"
+      >
+        <div class="container">
+          <a class="navbar-brand fw-bold text-primary fs-4" href="#">Nova</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-  <div
-    class="collapse navbar-collapse sub-menu-bar"
-    id="navbarSupportedContent6"
-  >
-    <ul id="nav6" class="navbar-nav ms-auto">
-
-      <li class="nav-item">
-        <a 
-          class="@class(['page-scroll', 'active' => $setActive == 'Home'])" 
-          href="#home"
-        >Home</a>
-      </li>
-
-      <li class="nav-item">
-        <a 
-          class="@class(['page-scroll', 'active' => $setActive == 'Scanner'])" 
-          href="scanner.html"
-        >Scanner</a>
-      </li>
-
-      <li class="nav-item">
-        <a 
-          class="@class(['page-scroll', 'active' => $setActive == 'Report'])" 
-          href="report.html"
-        >Report</a>
-      </li>
-
-      <li class="nav-item dropdown">
-        <a
-          {{-- 
-            Ini akan aktif jika $setActive adalah 'Management', 'ManagementUser', 
-            atau 'ManagementAdmin' (menggunakan helper 'Str::startsWith') 
-          --}}
-          class="@class([
-            'nav-link',
-            'dropdown-toggle',
-            'page-scroll',
-            'active' => Str::startsWith($setActive, 'Management')
-          ])"
-          href="#"
-          id="managementDropdown"
-          role="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          Management
-        </a>
-        <ul
-          class="dropdown-menu"
-          aria-labelledby="managementDropdown"
-        >
-          <li>
-            <a 
-              class="@class(['dropdown-item', 'active' => $setActive == 'ManagementUser'])" 
-              href="managementUser.html"
-            >Management Mahasiswa</a>
-          </li>
-          <li>
-            <a 
-              class="@class(['dropdown-item', 'active' => $setActive == 'ManagementAdmin'])" 
-              href="#admin"
-            >Management Admin</a>
-          </li>
-        </ul>
-      </li>
-
-      <li class="nav-item">
-        <a 
-          class="@class(['page-scroll', 'active' => $setActive == 'Login'])" 
-          href="#contact"
-        >Login</a>
-      </li>
-
-    </ul>
-  </div>
-</nav>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-center">
+              <li class="nav-item mx-2">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a class="nav-link" href="scanner.html">Scanner</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a class="nav-link fw-semibold" href="report.html"
+                  >Report</a
+                >
+              </li>
+              <li class="nav-item dropdown mx-2">
+                <a
+                  class="nav-link dropdown-toggle {{ $setActive == 'ManagementMahasiswa' || $setActive == 'ManagementUser' ? 'active text-primary' : '' }}"
+                  href="#"
+                  id="managementDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Management
+                </a>
+                <ul class="dropdown-menu border-0 shadow-sm">
+                  <li>
+                    <a class="dropdown-item {{ $setActive == 'ManagementMahasiswa' ? 'active' : '' }}" href="#">
+                      Management Mahasiswa
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item {{ $setActive == 'ManagementUser' ? 'active' : '' }}" href="#">
+                      Management User
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              </li>
+              <li class="nav-item mx-2">
+                <form method="POST" action="{{ route('logout') }}">
+                  @csrf
+                  <button type="submit" class="btn btn-outline-danger px-3">
+                    <i class="bi bi-box-arrow-right me-1"></i> Logout
+                  </button>
+                </form> 
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>

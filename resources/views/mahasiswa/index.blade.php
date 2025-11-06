@@ -1,12 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-4">
-        {{-- Tombol Logout --}}
-        <form method="POST" action="{{ route('logout') }}" class="mb-3 text-end">
-            @csrf
-            <button type="submit" class="btn btn-danger">Logout</button>
-        </form>
+    <x-navbar setActive="ManagementMahasiswa" />
+    <div class="container py-5 mt-5">
 
         <h2>Daftar Mahasiswa</h2>
         <a href="{{ route('mahasiswa.create') }}" class="btn btn-primary mb-3">+ Tambah Mahasiswa</a>
