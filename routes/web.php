@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/mahasiswa/{id}/kartu/download', [KartuController::class, 'download'])->name('mahasiswa.kartu.download');
 
     Route::prefix('mahasiswa')->name('mahasiswa.')->group(function () {
-    
+
         // Tampilkan semua mahasiswa (Method: index)
         // URI: /mahasiswa
         Route::get('/', [MahasiswaController::class, 'index'])

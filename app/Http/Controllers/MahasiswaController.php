@@ -34,6 +34,12 @@ class MahasiswaController extends Controller
         return response()->json(['success' => true, 'message' => 'Mahasiswa berhasil ditambahkan']);
     }
 
+    public function edit($id)
+    {
+        $mhs = Mahasiswa::findOrFail($id);
+        return response()->json($mhs);
+    }
+
     public function update(Request $request, $id)
     {
         $request->validate([

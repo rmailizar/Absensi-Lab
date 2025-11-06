@@ -147,7 +147,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-success" id="saveBtn">Simpan</button>
+                        <button type="submit" class="btn btn-success" id="saveBtn">cihuy</button>
                     </div>
                 </form>
             </div>
@@ -182,84 +182,131 @@
 @endsection
 
 @section('scripts')
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const modal = new bootstrap.Modal(document.getElementById('mahasiswaModal'));
-            const form = document.getElementById('mahasiswaForm');
-            const saveBtn = document.getElementById('saveBtn');
-            const modalTitle = document.getElementById('modalTitle');
-            const mhsId = document.getElementById('mhs_id');
-            const nimField = document.getElementById('nimField');
+<script>
+function showAlert(message, type = "success") {
+  const container = document.querySelector(".alert-container");
+  const alert = document.createElement("div");
+  alert.className = `alert alert-${type} alert-dismissible fade show shadow`;
+  alert.role = "alert";
+  alert.innerHTML = `
+    ${message}
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  `;
+  container.appendChild(alert);
+  setTimeout(() => alert.remove(), 4000);
+}
 
-            // Klik tombol tambah
-            document.getElementById('addMahasiswaBtn').addEventListener('click', () => {
-                form.reset();
-                mhsId.value = '';
-                nimField.style.display = 'block'; // tampilkan NIM
-                modalTitle.textContent = 'Tambah Mahasiswa';
-                saveBtn.textContent = 'Simpan';
-                modal.show();
-            });
+// === Tambah Mahasiswa ===
+const addModal = new bootstrap.Modal(document.getElementById("mahasiswaModal"));
+const saveBtn = document.getElementById("saveBtn");
+const form = document.getElementById("mahasiswaForm");
 
-            // Klik tombol edit
-            document.querySelectorAll('.editBtn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const row = e.target.closest('tr');
-                    // ambil id dari atribut data-id
-                    mhsId.value = row.dataset.id;
-                    document.getElementById('nama').value = row.children[2].textContent.trim();
-                    document.getElementById('jurusan').value = row.children[3].textContent.trim();
+document.getElementById("addMahasiswaBtn").addEventListener("click", () => {
+  form.reset();
+  document.getElementById("mhs_id").value = "";
+  document.getElementById("nimField").style.display = "block";
+  document.getElementById("modalTitle").textContent = "Tambah Mahasiswa";
+  saveBtn.textContent = "Simpan";
+  addModal.show();
+});
 
-                    // sembunyikan field NIM saat edit
-                    nimField.style.display = 'none';
-                    modalTitle.textContent = 'Edit Mahasiswa';
-                    saveBtn.textContent = 'Update';
-                    modal.show();
-                });
-            });
+saveBtn.addEventListener("click", async (e) => {
+  e.preventDefault();
+  const formData = new FormData(form);
 
-            // Submit form via AJAX
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
+  const id = document.getElementById("mhs_id").value;
+  const url = id ? `/mahasiswa/${id}` : `/mahasiswa`;
+  if (id) formData.append("_method", "PUT");
 
-                const formData = new FormData(form);
-                const id = mhsId.value;
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "X-CSRF-TOKEN": "{{ csrf_token() }}"
+      },
+      body: formData
+    });
 
-                // jika edit, tambahkan _method = PUT
-                if (id) formData.append('_method', 'PUT');
+    const result = await res.json();
 
-                // ambil CSRF dari meta tag
-                const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    if (res.ok && result.success) {
+      showAlert(result.message || "Data mahasiswa berhasil disimpan!", "success");
+      addModal.hide();
+      setTimeout(() => location.reload(), 1200);
+    } else {
+      showAlert(result.message || "Gagal menyimpan data.", "danger");
+    }
+  } catch (err) {
+    console.error(err);
+    showAlert("Terjadi kesalahan saat menyimpan data.", "danger");
+  }
+});
 
-                fetch(id ? `/mahasiswa/${id}` : `/mahasiswa`, {
-                        method: 'POST', // selalu POST (Laravel handle PUT via _method)
-                        headers: {
-                            'X-CSRF-TOKEN': csrfToken,
-                            'Accept': 'application/json'
-                        },
-                        body: formData
-                    })
-                    .then(async res => {
-                        // kalau bukan JSON, munculkan pesan error
-                        if (!res.ok) {
-                            const text = await res.text();
-                            throw new Error(text || 'Terjadi kesalahan server');
-                        }
-                        return res.json();
-                    })
-                    .then(data => {
-                        if (data.success) {
-                            // reload halaman agar tabel terupdate
-                            location.reload();
-                        } else {
-                            alert(data.message || 'Gagal menyimpan data!');
-                        }
-                    })
-                    .catch(err => {
-                        console.error('Error:', err);
-                        alert('Terjadi kesalahan, periksa console untuk detail.');
-                    });
-            });
-        });
-    </script>
+// === Edit Mahasiswa ===
+document.querySelectorAll(".editBtn").forEach(button => {
+  button.addEventListener("click", async () => {
+    const id = button.closest("tr").dataset.id;
+
+    try {
+      const res = await fetch(`/mahasiswa/${id}/edit`);
+      if (!res.ok) throw new Error("Gagal mengambil data mahasiswa");
+      const mhs = await res.json();
+
+      document.getElementById("mhs_id").value = mhs.id;
+      document.getElementById("nama").value = mhs.nama;
+      document.getElementById("jurusan").value = mhs.jurusan;
+      document.getElementById("nimField").style.display = "none";
+
+      document.getElementById("modalTitle").textContent = "Edit Mahasiswa";
+      saveBtn.textContent = "Update";
+      addModal.show();
+    } catch (err) {
+      console.error(err);
+      showAlert("Gagal memuat data mahasiswa", "danger");
+    }
+  });
+});
+
+// === Hapus Mahasiswa ===
+document.addEventListener("DOMContentLoaded", () => {
+  let deleteId = null;
+  const deleteModal = new bootstrap.Modal(document.getElementById("deleteConfirmModal"));
+  const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
+
+  document.querySelectorAll(".btn.btn-sm.btn-danger[data-id]").forEach(button => {
+    button.addEventListener("click", e => {
+      e.preventDefault();
+      deleteId = button.dataset.id;
+      deleteModal.show();
+    });
+  });
+
+  confirmDeleteBtn.addEventListener("click", async () => {
+    if (!deleteId) return;
+    try {
+      const res = await fetch(`/mahasiswa/${deleteId}`, {
+        method: "DELETE",
+        headers: {
+          "Accept": "application/json",
+          "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        }
+      });
+
+      const result = await res.json();
+
+      if (res.ok && result.success) {
+        showAlert(result.message || "Mahasiswa berhasil dihapus!", "success");
+        deleteModal.hide();
+        setTimeout(() => location.reload(), 1000);
+      } else {
+        showAlert(result.message || "Gagal menghapus data.", "danger");
+      }
+    } catch (err) {
+      console.error(err);
+      showAlert("Terjadi kesalahan saat menghapus data.", "danger");
+    }
+  });
+});
+</script>
 @endsection
