@@ -26,10 +26,9 @@
                         </select>
                         <input type="text" class="form-control form-control-sm search-box"
                             placeholder="Cari mahasiswa..." />
-                        <a href="{{ route('mahasiswa.create') }}" class="btn btn-primary btn-sm px-3" data-bs-toggle="modal"
-                            data-bs-target="#addAdminModal">
-                            <i class="bi bi-person-plus me-1"></i><span>Tambah Mahasiswa</span>
-                        </a>
+                        <button id="addMahasiswaBtn" class="btn btn-success mb-3">
+                            + Tambah Mahasiswa
+                        </button>
                     </div>
                 </div>
 
@@ -54,7 +53,7 @@
                         </thead>
                         <tbody>
                             @foreach ($mahasiswas as $mhs)
-                                <tr>
+                                <tr data-id="{{ $mhs->id }}">
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $mhs->nim }}</td>
                                     <td>{{ $mhs->nama }}</td>
@@ -68,8 +67,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('mahasiswa.edit', $mhs->id) }}"
-                                            class="btn btn-sm btn-warning">Edit</a>
+                                        <button class="btn btn-sm btn-warning editBtn">Edit</button>
                                         <form action="{{ route('mahasiswa.destroy', $mhs->id) }}" method="POST"
                                             style="display: inline">
                                             @csrf @method('DELETE')
@@ -116,99 +114,42 @@
         </div>
     </div>
 
-    <!-- Modal Tambah mahasiswa -->
-    <div class="modal fade" id="addAdminModal" tabindex="-1" aria-labelledby="addAdminModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content shadow-lg">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addAdminModalLabel">
-                        Tambah Mahasiswa
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+    <!-- Modal Tambah/Edit -->
+    <div class="modal fade" id="mahasiswaModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content shadow">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="modalTitle">Tambah Mahasiswa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body px-4 py-4">
-                    <form id="addAdminForm">
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">Nama</label>
-                            <input type="text" class="form-control" placeholder="Masukkan nama lengkap" required />
+                <form id="mahasiswaForm">
+                    @csrf
+                    <input type="hidden" id="mhs_id">
+                    <div class="modal-body">
+                        <div class="mb-3" id="nimField">
+                            <label>NIM</label>
+                            <input type="text" name="nim" id="nim" class="form-control" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">NIM</label>
-                            <input type="text" class="form-control" placeholder="Masukkan NIM" required />
+                            <label>Nama</label>
+                            <input type="text" name="nama" id="nama" class="form-control" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">Jurusan</label>
-                            <select class="form-select" required>
-                                <option selected disabled>
-                                    Pilih jurusan
-                                </option>
+                            <label>Jurusan</label>
+                            <select name="jurusan" id="jurusan" class="form-select" required>
+                                <option value="">Pilih Jurusan</option>
                                 <option>Teknik Informatika</option>
                                 <option>Sistem Informasi</option>
                                 <option>Teknik Komputer</option>
                                 <option>Manajemen Informatika</option>
                             </select>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">Password</label>
-                            <input type="password" class="form-control" placeholder="Masukkan password" required />
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">
-                        Batal
-                    </button>
-                    <button type="button" class="btn btn-primary" id="saveAdminBtn">
-                        Simpan
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Edit Mahasiswa -->
-    <div class="modal fade" id="editAdminModal" tabindex="-1" aria-labelledby="editAdminModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content shadow-lg">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editAdminModalLabel">
-                        Edit Admin
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body px-4 py-4">
-                    <form>
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">Nama</label>
-                            <input type="text" class="form-control" value="John Michael" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">NIM</label>
-                            <input type="text" class="form-control" value="123456789" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">Jurusan</label>
-                            <select class="form-select">
-                                <option>Teknik Informatika</option>
-                                <option>Sistem Informasi</option>
-                                <option>Teknik Komputer</option>
-                                <option>Manajemen Informatika</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">Password</label>
-                            <input type="password" class="form-control" placeholder="Kosongkan jika tidak diubah" />
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">
-                        Batal
-                    </button>
-                    <button class="btn btn-primary" id="saveEditBtn">
-                        Simpan Perubahan
-                    </button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-success" id="saveBtn">Simpan</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -238,4 +179,87 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = new bootstrap.Modal(document.getElementById('mahasiswaModal'));
+            const form = document.getElementById('mahasiswaForm');
+            const saveBtn = document.getElementById('saveBtn');
+            const modalTitle = document.getElementById('modalTitle');
+            const mhsId = document.getElementById('mhs_id');
+            const nimField = document.getElementById('nimField');
+
+            // Klik tombol tambah
+            document.getElementById('addMahasiswaBtn').addEventListener('click', () => {
+                form.reset();
+                mhsId.value = '';
+                nimField.style.display = 'block'; // tampilkan NIM
+                modalTitle.textContent = 'Tambah Mahasiswa';
+                saveBtn.textContent = 'Simpan';
+                modal.show();
+            });
+
+            // Klik tombol edit
+            document.querySelectorAll('.editBtn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const row = e.target.closest('tr');
+                    // ambil id dari atribut data-id
+                    mhsId.value = row.dataset.id;
+                    document.getElementById('nama').value = row.children[2].textContent.trim();
+                    document.getElementById('jurusan').value = row.children[3].textContent.trim();
+
+                    // sembunyikan field NIM saat edit
+                    nimField.style.display = 'none';
+                    modalTitle.textContent = 'Edit Mahasiswa';
+                    saveBtn.textContent = 'Update';
+                    modal.show();
+                });
+            });
+
+            // Submit form via AJAX
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const formData = new FormData(form);
+                const id = mhsId.value;
+
+                // jika edit, tambahkan _method = PUT
+                if (id) formData.append('_method', 'PUT');
+
+                // ambil CSRF dari meta tag
+                const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+
+                fetch(id ? `/mahasiswa/${id}` : `/mahasiswa`, {
+                        method: 'POST', // selalu POST (Laravel handle PUT via _method)
+                        headers: {
+                            'X-CSRF-TOKEN': csrfToken,
+                            'Accept': 'application/json'
+                        },
+                        body: formData
+                    })
+                    .then(async res => {
+                        // kalau bukan JSON, munculkan pesan error
+                        if (!res.ok) {
+                            const text = await res.text();
+                            throw new Error(text || 'Terjadi kesalahan server');
+                        }
+                        return res.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            // reload halaman agar tabel terupdate
+                            location.reload();
+                        } else {
+                            alert(data.message || 'Gagal menyimpan data!');
+                        }
+                    })
+                    .catch(err => {
+                        console.error('Error:', err);
+                        alert('Terjadi kesalahan, periksa console untuk detail.');
+                    });
+            });
+        });
+    </script>
 @endsection
