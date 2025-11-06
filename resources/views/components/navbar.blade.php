@@ -48,12 +48,12 @@
                 </a>
                 <ul class="dropdown-menu border-0 shadow-sm">
                   <li>
-                    <a class="dropdown-item {{ $setActive == 'ManagementMahasiswa' ? 'active' : '' }}" href="#">
+                    <a class="dropdown-item {{ $setActive == 'ManagementMahasiswa' ? 'active' : '' }}" href="{{ route('mahasiswa.index') }}">
                       Management Mahasiswa
                     </a>
                   </li>
                   <li>
-                    <a class="dropdown-item {{ $setActive == 'ManagementUser' ? 'active' : '' }}" href="#">
+                    <a class="dropdown-item {{ $setActive == 'ManagementUser' ? 'active' : '' }}" href="{{ route('users.index') }}">
                       Management User
                     </a>
                   </li>
