@@ -4,7 +4,7 @@
 
 @props(['setActive'])
 
-<header class="header shadow-sm my-5">
+<header class="header shadow-sm">
       <nav
         class="navbar navbar-expand-lg navbar-light bg-white bg-opacity-75 fixed-top shadow-sm"
       >
