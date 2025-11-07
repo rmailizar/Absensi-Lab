@@ -9,7 +9,7 @@
         class="navbar navbar-expand-lg navbar-light bg-white bg-opacity-75 fixed-top shadow-sm"
       >
         <div class="container">
-          <a class="navbar-brand fw-bold text-primary fs-4" href="#">Nova</a>
+          <a class="navbar-brand fw-bold text-primary fs-4" href="{{ route('users.home') }}">LabLogix</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -25,7 +25,7 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto align-items-center">
               <li class="nav-item mx-2">
-                <a class="nav-link {{ $setActive == 'Home' ? 'active text-primary' : '' }}" href="{{ route('mahasiswa.index') }}">Home</a>
+                <a class="nav-link {{ $setActive == 'Home' ? 'active text-primary' : '' }}" href="{{ route('users.home') }}">Home</a>
               </li>
               <li class="nav-item mx-2">
                 <a class="nav-link {{ $setActive == 'Scanner' ? 'active text-primary' : '' }}" href="{{ route('absensi.index') }}">Scanner</a>

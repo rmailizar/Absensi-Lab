@@ -14,6 +14,11 @@ class UserController extends Controller
         return view('users.index', compact('users'));
     }
 
+    public function home()
+    {
+        return view('users.home');
+    }
+
     public function create()
     {
         return view('users.create');

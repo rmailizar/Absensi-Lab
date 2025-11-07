@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
     // halaman rekap absensi
     Route::get('/absensi/rekap', [AbsensiController::class, 'rekap'])->name('absensi.rekap');
 
+    Route::get('/users/home', [UserController::class, 'home'])->name('users.home');
     Route::resource('users', UserController::class);
     Route::get('/mahasiswa/{id}/kartu', [KartuController::class, 'show'])->name('mahasiswa.kartu.show');
     Route::get('/mahasiswa/{id}/kartu/download', [KartuController::class, 'download'])->name('mahasiswa.kartu.download');

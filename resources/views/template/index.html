@@ -1,135 +1,217 @@
 <!DOCTYPE html>
-<html class="no-js" lang="">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Nova - Bootstrap 5 Template</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Place favicon.ico in the root directory -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LabLogix - Absensi Lab</title>
+    <!-- Memuat Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Memuat Font Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
 
-    <!-- ========================= CSS here ========================= -->
-    <link rel="stylesheet" href="assets/css/bootstrap-5.0.0-beta1.min.css" />
-    <link rel="stylesheet" href="assets/css/LineIcons.2.0.css" />
-    <link rel="stylesheet" href="assets/css/tiny-slider.css" />
-    <link rel="stylesheet" href="assets/css/animate.css" />
-    <link rel="stylesheet" href="assets/css/lindy-uikit.css" />
-  </head>
-  <body>
-    <!-- ========================= hero-section-wrapper-5 start ========================= -->
-    <section id="home" class="hero-section-wrapper-5">
-      <!-- ========================= header-6 start ========================= -->
-      <header class="header header-6">
-        <div class="navbar-area">
-          <div class="container">
-            <div class="row align-items-center">
-              <div class="col-lg-12">
-                <nav class="navbar navbar-expand-lg">
-                  <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent6"
-                    aria-controls="navbarSupportedContent6"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                  >
-                    <span class="toggler-icon"></span>
-                    <span class="toggler-icon"></span>
-                    <span class="toggler-icon"></span>
-                  </button>
+    <style>
+        /* Menggunakan font Inter sebagai default */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
 
-                  <div
-                    class="collapse navbar-collapse sub-menu-bar"
-                    id="navbarSupportedContent6"
-                  >
-                    <ul id="nav6" class="navbar-nav ms-auto">
-                      <li class="nav-item">
-                        <a class="page-scroll active" href="#home">Home</a>
-                      </li>
+        /* CSS Kustom untuk Latar Belakang 
+          Ini adalah bagian yang paling penting untuk membuat ulang efek "gelombang"
+          tanpa menggunakan gambar, sesuai permintaan Anda.
+          Kita menggunakan beberapa gradien radial besar yang ditempatkan di bagian bawah.
+        */
+        .hero-background {
+            /* Warna dasar langit */
+            background-color: #f0f9ff; /* sky-50 */
+            
+            /* Gradien bergelombang di bagian bawah.
+              Ini adalah elips besar yang sangat buram (blur) yang tumpang tindih.
+              Ini menciptakan kembali efek gelombang abstrak seperti pada gambar.
+            */
+            background-image: 
+                /* Gelombang hijau muda di kiri bawah */
+                radial-gradient(ellipse 50% 40% at 20% 100%, #c8f7c599 0%, transparent 80%),
+                /* Gelombang biru muda di tengah */
+                radial-gradient(ellipse 60% 45% at 50% 100%, #a0e9ff99 0%, transparent 80%),
+                /* Gelombang biru pucat di kanan bawah */
+                radial-gradient(ellipse 50% 40% at 85% 100%, #dbeafe99 0%, transparent 80%);
+            
+            background-repeat: no-repeat;
+            /* Memastikan gradien menutupi seluruh area, mirip 'background-size: cover' */
+            background-size: 100% 100%;
+            background-position: center bottom;
+        }
 
-                      <li class="nav-item">
-                        <a class="page-scroll" href="scanner.html">Scanner</a>
-                      </li>
+        /* CSS Kustom untuk Teks "LabLogix"
+          Kita menggunakan background-clip: text untuk membuat warna gradien di dalam teks.
+        */
+        .gradient-text span {
+            /* Terapkan gradien sebagai background */
+            background-image: var(--letter-gradient);
+            
+            /* Potong background agar sesuai dengan bentuk teks */
+            -webkit-background-clip: text;
+            background-clip: text;
+            
+            /* Buat teksnya transparan agar gradien terlihat */
+            color: transparent;
+            
+            /* Mencegah pemecahan baris antar huruf */
+            display: inline-block;
+        }
 
-                      <li class="nav-item">
-                        <a class="page-scroll" href="report.html">Report</a>
-                      </li>
+        /* Efek hover sederhana untuk navbar */
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            transform: translateY(-2px);
+            background-color: #ffffff; /* Putih */
+            color: #0284c7; /* sky-600 */
+        }
+    </style>
+</head>
+<body class="antialiased">
 
-                      <!-- Dropdown Management -->
-                      <li class="nav-item dropdown">
-                        <a
-                          class="nav-link dropdown-toggle page-scroll"
-                          href="#"
-                          id="managementDropdown"
-                          role="button"
-                          data-bs-toggle="dropdown"
-                          aria-expanded="false"
-                        >
-                          Management
-                        </a>
-                        <ul
-                          class="dropdown-menu"
-                          aria-labelledby="managementDropdown"
-                        >
-                          <li>
-                            <a class="dropdown-item" href="managementUser.html"
-                              >Management Mahasiswa</a
-                            >
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#admin"
-                              >Management Admin</a
-                            >
-                          </li>
-                        </ul>
-                      </li>
+    <!-- 
+      Wrapper utama yang mencakup seluruh layar 
+      dan menerapkan latar belakang gradien kustom
+    -->
+    <div class="relative min-h-screen w-full flex flex-col items-center hero-background overflow-hidden">
 
-                      <li class="nav-item">
-                        <a class="page-scroll" href="#contact">Login</a>
-                      </li>
-                    </ul>
-                  </div>
+        <!-- ===== Header / Navbar ===== -->
+        <header class="w-full absolute top-0 left-0 z-10 p-4">
+            <div class="container mx-auto max-w-6xl px-4">
+                <nav class="flex justify-between items-center bg-white/70 backdrop-blur-sm rounded-full shadow-md py-3 px-6">
+                    <!-- Logo/Brand (bisa ditambahkan jika perlu) -->
+                    <a href="#home" class="text-xl font-bold text-sky-700 hidden sm:block">
+                        LabLogix
+                    </a>
+
+                    <!-- Tombol Mobile Menu -->
+                    <button id="mobileMenuButton" class="sm:hidden text-sky-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+
+                    <!-- Menu Navigasi (Desktop) -->
+                    <div class="hidden sm:flex items-center space-x-2">
+                        <a href="#home" class="nav-link text-sky-700 font-medium py-2 px-4 rounded-full">Home</a>
+                        <a href="#scanner" class="nav-link text-gray-600 font-medium py-2 px-4 rounded-full">Scanner</a>
+                        <a href="#report" class="nav-link text-gray-600 font-medium py-2 px-4 rounded-full">Report</a>
+                        
+                        <!-- Dropdown Management -->
+                        <div class="relative" data-dropdown-toggle>
+                            <button class="nav-link text-gray-600 font-medium py-2 px-4 rounded-full flex items-center" data-dropdown-button>
+                                Management
+                                <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                            </button>
+                            <!-- Menu Dropdown -->
+                            <div class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg z-20 hidden" data-dropdown-menu>
+                                <a href="#manage-mahasiswa" class="block px-4 py-3 text-sm text-gray-700 hover:bg-sky-50 rounded-t-xl">Management Mahasiswa</a>
+                                <a href="#manage-admin" class="block px-4 py-3 text-sm text-gray-700 hover:bg-sky-50 rounded-b-xl">Management Admin</a>
+                            </div>
+                        </div>
+                        
+                        <a href="#login" class="nav-link text-gray-600 font-medium py-2 px-4 rounded-full">Login</a>
+                    </div>
                 </nav>
-
-                <!-- navbar -->
-              </div>
             </div>
-            <!-- row -->
-          </div>
-          <!-- container -->
-        </div>
-        <!-- navbar area -->
-      </header>
-      <!-- ========================= header-6 end ========================= -->
-
-      <!-- ========================= hero-5 start ========================= -->
-      <div
-        class="hero-section hero-style-5 img-bg"
-        style="
-          background-image: url('assets/img/hero/hero-5/Nova.svg');
-          background-size: cover;
-          background-position: center;
-          background-repeat: no-repeat;
-          height: 100vh;
-        "
-      >
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="hero-content-wrapper"></div>
+            
+            <!-- Menu Navigasi (Mobile) -->
+            <div id="mobileMenu" class="hidden sm:hidden mt-2 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-4">
+                <a href="#home" class="block py-2 px-3 text-sky-700 font-medium rounded-lg hover:bg-sky-50">Home</a>
+                <a href="#scanner" class="block py-2 px-3 text-gray-600 font-medium rounded-lg hover:bg-sky-50">Scanner</a>
+                <a href="#report" class="block py-2 px-3 text-gray-600 font-medium rounded-lg hover:bg-sky-50">Report</a>
+                <a href="#manage-mahasiswa" class="block py-2 px-3 text-gray-600 font-medium rounded-lg hover:bg-sky-50">Management Mahasiswa</a>
+                <a href="#manage-admin" class="block py-2 px-3 text-gray-600 font-medium rounded-lg hover:bg-sky-50">Management Admin</a>
+                <a href="#login" class="block py-2 px-3 text-gray-600 font-medium rounded-lg hover:bg-sky-50">Login</a>
             </div>
-          </div>
-        </div>
-      </div>
-      <!-- ========================= hero-5 end ========================= -->
-    </section>
-    <!-- ========================= hero-section-wrapper-6 end ========================= -->
+        </header>
 
-    <!-- ========================= JS here ========================= -->
-    <script src="assets/js/bootstrap-5.0.0-beta1.min.js"></script>
-    <script src="assets/js/tiny-slider.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/main.js"></script>
-  </body>
+        <!-- ===== Konten Hero ===== -->
+        <main class="flex-grow flex flex-col justify-center items-center text-center px-4 pt-32 pb-16">
+            
+            <!-- Teks Judul Utama "LabLogix" dengan Gradien -->
+            <h1 class="gradient-text text-8xl sm:text-9xl md:text-[180px] lg:text-[220px] font-black tracking-tighter"
+                aria-label="LabLogix">
+                <!-- 
+                  Setiap huruf diberi variabel CSS untuk gradiennya,
+                  sesuai dengan palet warna di gambar.
+                -->
+                <span style="--letter-gradient: linear-gradient(to right, #0077b6, #48cae4);">L</span>
+                <span style="--letter-gradient: linear-gradient(to right, #48cae4, #90e0ef);">a</span>
+                <span style="--letter-gradient: linear-gradient(to right, #ade8f4, #c8f7c5);">b</span>
+                <span style="--letter-gradient: linear-gradient(to right, #90e0ef, #dbeafe);">L</span>
+                <span style="--letter-gradient: linear-gradient(to right, #0077b6, #48cae4);">o</span>
+                <span style="--letter-gradient: linear-gradient(to right, #48cae4, #90e0ef);">g</span>
+                <span style="--letter-gradient: linear-gradient(to right, #ade8f4, #c8f7c5);">i</span>
+                <span style="--letter-gradient: linear-gradient(to right, #90e0ef, #dbeafe);">x</span>
+            </h1>
+            
+            <!-- Teks Sub-judul -->
+            <div class="mt-4 sm:mt-0">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-sky-800">
+                    Welcome to LabLogix
+                </h2>
+                <p class="text-lg sm:text-xl md:text-2xl text-sky-700 mt-3 max-w-2xl">
+                    Online Website for efficiency and security of our lab
+                </p>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- ===== JavaScript ===== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            // --- Logika Mobile Menu ---
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function () {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // --- Logika Dropdown ---
+            // Menangani semua dropdown di halaman
+            const dropdownToggles = document.querySelectorAll('[data-dropdown-toggle]');
+
+            dropdownToggles.forEach(toggle => {
+                const button = toggle.querySelector('[data-dropdown-button]');
+                const menu = toggle.querySelector('[data-dropdown-menu]');
+
+                if (button && menu) {
+                    button.addEventListener('click', (e) => {
+                        e.stopPropagation(); // Mencegah klik menyebar ke window
+                        // Sembunyikan semua dropdown lain
+                        hideAllDropdowns(menu);
+                        // Toggle dropdown ini
+                        menu.classList.toggle('hidden');
+                    });
+                }
+            });
+
+            // Fungsi untuk menyembunyikan semua dropdown, kecuali yang sedang aktif
+            function hideAllDropdowns(exceptMenu = null) {
+                document.querySelectorAll('[data-dropdown-menu]').forEach(menu => {
+                    if (menu !== exceptMenu) {
+                        menu.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Klik di luar dropdown akan menutupnya
+            window.addEventListener('click', () => {
+                hideAllDropdowns();
+            });
+
+        });
+    </script>
+
+</body>
 </html>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('scanner-style')
+@section('custom-style')
     <link rel="stylesheet" href="{{ asset('assets/css/scanner.css') }}">
 @endsection
 

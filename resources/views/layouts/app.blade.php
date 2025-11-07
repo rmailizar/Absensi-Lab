@@ -11,9 +11,13 @@
     <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/lindy-uikit.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/manageuser.css') }}">
-    @yield('scanner-style')
+    <!-- Memuat Font Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    @yield('custom-style')
     <style>
         body {
             padding-top: 90px;
