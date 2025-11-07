@@ -9,9 +9,24 @@ use Illuminate\Support\Facades\Storage;
 
 class MahasiswaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $mahasiswas = Mahasiswa::all();
+        // Mulai query
+        $query = Mahasiswa::query();
+
+        // Filter berdasarkan jurusan
+        if ($request->has('jurusan') && $request->jurusan != 'Semua Jurusan') {
+            $query->where('jurusan', $request->jurusan);
+        }
+
+        // Filter berdasarkan nama (search)
+        if ($request->has('search') && $request->search != '') {
+            $query->where('nama', 'like', '%' . $request->search . '%');
+        }
+
+        // Pagination
+        $mahasiswas = $query->paginate(5)->appends($request->all());
+
         return view('mahasiswa.index', compact('mahasiswas'));
     }
 

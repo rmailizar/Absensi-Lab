@@ -17,15 +17,19 @@
                         Mahasiswa Table
                     </h5>
                     <div class="d-flex align-items-center gap-2 flex-nowrap">
-                        <select class="form-select form-select-sm filter-select">
-                            <option selected>Semua Jurusan</option>
-                            <option>Teknik Informatika</option>
-                            <option>Sistem Informasi</option>
-                            <option>Teknik Komputer</option>
-                            <option>Manajemen Informatika</option>
-                        </select>
-                        <input type="text" class="form-control form-control-sm search-box"
-                            placeholder="Cari mahasiswa..." />
+                        <form method="GET" action="{{ route('mahasiswa.index') }}" class="d-flex gap-2">
+                            <select name="jurusan" class="form-select form-select-sm filter-select" onchange="this.form.submit()">
+                                <option {{ request('jurusan') == 'Semua Jurusan' ? 'selected' : '' }}>Semua Jurusan</option>
+                                <option value="Teknik Informatika" {{ request('jurusan') == 'Teknik Informatika' ? 'selected' : '' }}>Teknik Informatika</option>
+                                <option value="Sistem Informasi" {{ request('jurusan') == 'Sistem Informasi' ? 'selected' : '' }}>Sistem Informasi</option>
+                                <option value="Teknik Komputer" {{ request('jurusan') == 'Teknik Komputer' ? 'selected' : '' }}>Teknik Komputer</option>
+                                <option value="Manajemen Informatika" {{ request('jurusan') == 'Manajemen Informatika' ? 'selected' : '' }}>Manajemen Informatika</option>
+                            </select>
+                        
+                            <input type="text" name="search" value="{{ request('search') }}" class="form-control form-control-sm search-box" placeholder="Cari mahasiswa..." />
+                        
+                            <button type="submit" class="btn btn-sm btn-primary">Cari</button>
+                        </form>
                         <button id="addMahasiswaBtn" class="btn btn-primary btn-sm px-3">
                             <i class="bi bi-person-plus me-1"></i> <span>Tambah Mahasiswa</span>
                         </button>
@@ -52,9 +56,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($mahasiswas as $mhs)
+                            @foreach ($mahasiswas as $index => $mhs)
                                 <tr data-id="{{ $mhs->id }}">
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $mahasiswas->firstItem() + $index }}</td>
                                     <td>{{ $mhs->nim }}</td>
                                     <td>{{ $mhs->nama }}</td>
                                     <td>{{ $mhs->jurusan }}</td>
@@ -86,25 +90,9 @@
                 </div>
 
                 <!-- Pagination -->
-                <nav>
-                    <ul class="pagination justify-content-center mt-4">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#">Previous</a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="#">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </nav>
+                <div class="d-flex justify-content-center">
+                    {{ $mahasiswas->links('pagination::bootstrap-4') }}
+                </div>
             </div>
         </div>
     </div>
