@@ -8,9 +8,32 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+        $query = User::query();
+
+        // Filter berdasarkan role (jika dikirim dari AJAX)
+        if ($request->has('role') && $request->role !== 'Semua Role') {
+            $query->where('role', strtolower($request->role));
+        }
+
+        // Pencarian (jika dikirim dari AJAX)
+        if ($request->has('search') && !empty($request->search)) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%");
+            });
+        }
+
+        // Pagination (10 per halaman)
+        $users = $query->orderBy('name')->paginate(5);
+
+        // Jika request dari AJAX, kirim hanya table (agar tidak reload total)
+        if ($request->ajax()) {
+            return view('users.partials.table', compact('users'))->render();
+        }
+
         return view('users.index', compact('users'));
     }
 
