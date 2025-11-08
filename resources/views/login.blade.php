@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>Login | LabLogix</title>
     <style>
         .bg-image-vertical {
             position: relative;
@@ -75,7 +75,7 @@
                                 <span style="--letter-gradient: linear-gradient(to right, #0077b6, #c8f7c5);">i</span>
                                 <span style="--letter-gradient: linear-gradient(to right, #0077b6, #dbeafe);">x</span>
                             </h1>
-                            <h3 class="font-weight-bold text-center" style="letter-spacing: 1px;">Log in</h3>
+                            <h3 class="font-weight-bold text-center" style="letter-spacing: 1px;">Login</h3>
 
                             <div data-mdb-input-init class="form-outline mb-4">
                                 <label class="form-label" for="form2Example18">Email address:</label>

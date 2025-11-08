@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Table User | LabLogix')
+
 @section('content')
     <x-navbar setActive="ManagementUser" />
 

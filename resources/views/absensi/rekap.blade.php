@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Report | LabLogix')
+
 @section('content')
     <x-navbar setActive="Rekap" />
     <div class="bg-shape"></div>
