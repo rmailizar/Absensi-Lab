@@ -10,7 +10,7 @@
         <div class="card shadow-sm rounded-4">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
-                    <h5 class="fw-bold mb-0">Management User</h5>
+                    <h5 class="fw-bold mb-0 text-primary">Management User</h5>
                     <div class="d-flex align-items-center gap-2 flex-wrap justify-content-end">
                         <select class="form-select form-select-sm filter-select w-auto">
                             <option selected>Semua Role</option>
