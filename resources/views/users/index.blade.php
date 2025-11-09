@@ -36,8 +36,8 @@
     <div class="modal fade" id="addAdminModal" tabindex="-1" aria-labelledby="addAdminModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content shadow-lg">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addAdminModalLabel">Tambah User</h5>
+                <div class="modal-header bg-primary">
+                    <h5 class="modal-title text-white" id="addAdminModalLabel">Tambah User</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body px-4 py-4">
@@ -84,8 +84,8 @@
     <div class="modal fade" id="editAdminModal" tabindex="-1" aria-labelledby="editAdminModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content shadow-lg text-dark bg-white">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editAdminModalLabel">Edit User</h5>
+                <div class="modal-header bg-warning">
+                    <h5 class="modal-title text-white" id="editAdminModalLabel">Edit User</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body px-4 py-4">
@@ -129,7 +129,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content shadow-lg">
                 <div class="modal-header bg-danger text-white">
-                    <h5 class="modal-title" id="deleteConfirmModalLabel">Konfirmasi Hapus</h5>
+                    <h5 class="modal-title text-white" id="deleteConfirmModalLabel">Konfirmasi Hapus</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
@@ -425,6 +425,17 @@
                 showAlert("Terjadi kesalahan saat menghapus user.", "danger");
             }
         });
+
+        document.addEventListener("hidden.bs.modal", function(event) {
+            const modals = document.querySelectorAll(".modal.show");
+            if (modals.length === 0) {
+                document.body.classList.remove("modal-open");
+                document.body.style.paddingRight = "";
+                const backdrops = document.querySelectorAll(".modal-backdrop");
+                backdrops.forEach(el => el.remove());
+            }
+        });
+
 
         // Pastikan juga attach ulang setiap kali tabel diperbarui via AJAX
         document.addEventListener("DOMContentLoaded", attachDeleteEvents);

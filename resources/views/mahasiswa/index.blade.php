@@ -102,7 +102,7 @@
         <div class="modal-dialog">
             <div class="modal-content shadow">
                 <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title" id="modalTitle">Tambah Mahasiswa</h5>
+                    <h5 class="modal-title text-white" id="modalTitle">Tambah Mahasiswa</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <form id="mahasiswaForm">
@@ -143,7 +143,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content shadow-lg">
                 <div class="modal-header bg-danger text-white">
-                    <h5 class="modal-title" id="deleteConfirmModalLabel">
+                    <h5 class="modal-title text-white" id="deleteConfirmModalLabel">
                         Konfirmasi Hapus
                     </h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
