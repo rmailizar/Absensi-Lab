@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Table Mahasiswa | LabLogix')
+
 @section('content')
     <x-navbar setActive="ManagementMahasiswa" />
 

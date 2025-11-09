@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Scanner | LabLogix')
+
 @section('custom-style')
     <link rel="stylesheet" href="{{ asset('assets/css/scanner.css') }}">
 @endsection

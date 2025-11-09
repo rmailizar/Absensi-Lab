@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Home | LabLogix')
+
 @section('custom-style')
     <style>
         /* Menggunakan font Inter sebagai default */
